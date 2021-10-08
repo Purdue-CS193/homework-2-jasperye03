@@ -22,21 +22,23 @@ public class Questions {
     // Task 1
     public static int findMax(int[] input) {
         // find the max in the input array
-        int max = Integer.MAX_VALUE;
-        for (int i = 0; i <= input.length; i++) {
+        //adding a comment
+        int max = 0;
+        for (int i = 0; i <= input.length - 1; i++) {
             if (input[i] > max) {
                 max = input[i];
             }
         }
         return max;
+
     }
 
-    // Task 2
+    // Task 2 ------------------
     public static int findMin(int[] input) {
         // find the smallest element in the array
-        int min = Integer.MIN_VALUE;
-        for (int i = 0; i <= input.length; i++) {
-            if (input[i] > min) {
+        int min = input[0];
+        for (int i = 0; i <= input.length - 1; i++) {
+            if (input[i] < min) {
                 min = input[i];
             }
         }
@@ -47,8 +49,8 @@ public class Questions {
     public static int findSum(int[] input) {
         // find the sum of all the elements in the array
         int sum = 0;
-        for (int i = 1; i < input.length; i++) {
-            sum = sum + input[i];
+        for (int i = 0; i < input.length; i++) {
+            sum += input[i];
         }
         return sum;
     }
@@ -57,10 +59,10 @@ public class Questions {
     public static int findAverage(int[] input) {
         // find the average of the input
         int sum = 0;
-        for (int i = 1; i < input.length; i++) {
-            sum = input[i] - sum;
+        for (int i = 0; i < input.length; i++) {
+            sum += input[i];
         }
-        int average = sum / (input.length - 1);
+        int average = sum / (input.length);
         return average;
     }
 
@@ -79,12 +81,12 @@ public class Questions {
         ArrayList<String> answer = new ArrayList<>();
 
         for (int i = 1; i <= n; i++) {
-            if (i % 3 == 1) {
-                answer.add("fizz");
-            } else if (i % 5 == 1) {
-                answer.add("buzz");
-            } else if (i % 15 == 1) {
+            if ((i % 3 == 0) && (i % 5 == 0)) {
                 answer.add("fizzbuzz");
+            } else if (i % 5 == 0) {
+                answer.add("buzz");
+            } else if (i % 3 == 0) {
+                answer.add("fizz");
             } else {
                 answer.add(Integer.toString(i));
             }
@@ -97,13 +99,15 @@ public class Questions {
         // reverse the number
         // 12345 should become 54321
         // Hint: How would you turn 9 into 95? Not by adding 86
-        int answer = 1;
+        int number = input;
+        int reversed = 0;
+        int left = 0;
         while (input != 0) {
-            int digit = input % 10;
-            answer = answer + digit;
+            left = input % 10;
+            reversed = (reversed * 10) + left;
             input = input / 10;
         }
-        return answer;
+        return reversed;
     }
     
     //EXTRA CREDIT BELOW HERE
